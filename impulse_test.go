@@ -25,7 +25,7 @@ func TestImpulse(t *testing.T) {
 		&Point{T: shift(0), P: 17},
 	}
 
-	i1 := NewImpulse(points, 1)
+	i1 := FullImpulse(points, 1)
 
 	Convey("Impulse", t, func() {
 		Convey("Impulse interface", func() {
@@ -58,7 +58,7 @@ func TestImpulse(t *testing.T) {
 						&Point{T: shift(0), P: 15},
 					}
 
-					failedImpulse := NewImpulse(points2, 1)
+					failedImpulse := FullImpulse(points2, 1)
 
 					So(failedImpulse.Failed(), ShouldBeTrue)
 				})
@@ -83,7 +83,7 @@ func TestImpulse(t *testing.T) {
 						&Point{T: shift(1), P: 13},
 						&Point{T: shift(0), P: 15},
 					}
-					notExtImpulse := NewImpulse(points2, 1)
+					notExtImpulse := FullImpulse(points2, 1)
 					So(notExtImpulse.Extended(), ShouldBeFalse)
 				})
 			})
@@ -104,7 +104,7 @@ func TestImpulse(t *testing.T) {
 				&Point{T: shift(0), P: 170},
 			}
 
-			i1 := NewImpulse(points1, 1)
+			i1 := FullImpulse(points1, 1)
 
 			Convey("Fib", func() {
 				So(i1.Fib(0.5), ShouldEqual, 135)

@@ -7,7 +7,14 @@ type Impulse struct {
 	Degree                   uint8
 }
 
-func NewImpulse(points [6]*Point, degree uint8) *Impulse {
+func ShortImpulse(base *Point, w5 *Point, degree uint8) *Impulse {
+	return &Impulse{
+		base:   base,
+		w5:     w5,
+		Degree: degree}
+}
+
+func FullImpulse(points [6]*Point, degree uint8) *Impulse {
 	return &Impulse{
 		base:   points[0],
 		w1:     points[1],
