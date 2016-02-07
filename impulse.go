@@ -1,5 +1,7 @@
 package ewa
 
+import "time"
+
 type Impulse struct {
 	base, w1, w2, w3, w4, w5 *Point
 	Degree                   uint8
@@ -35,6 +37,34 @@ func (i Impulse) W4() Wave {
 func (i Impulse) W5() Wave {
 	return Wave{Base: i.w4, End: i.w5}
 }
+
+// Wave interface
+
+func (i Impulse) Time() time.Duration {
+	return i.w5.T.Sub(i.base.T)
+}
+
+func (i Impulse) Len() uint32 {
+	if i.Up() {
+		return i.w5.P - i.base.P
+	}
+
+	return i.base.P - i.w5.P
+}
+
+func (i Impulse) Up() bool {
+	return i.w5.P > i.base.P
+}
+
+func (i Impulse) Fib(level float64) uint32 {
+	if i.Up() {
+		return i.base.P + uint32(float64(i.Len())*level)
+	}
+
+	return i.w5.P + uint32(float64(i.Len())*level)
+}
+
+// Impulse interface
 
 func (i Impulse) Failed() bool {
 	return i.W3().End.P >= i.W5().End.P
