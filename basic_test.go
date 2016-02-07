@@ -11,13 +11,13 @@ func TestWave(t *testing.T) {
 	Convey("Basic wave", t, func() {
 		now := time.Now()
 		wave := &Wave{
-			Base: Point{T: now, P: 189032},
-			End:  Point{T: now.Add(-time.Hour * 16), P: 210054},
+			Base: &Point{T: now, P: 189032},
+			End:  &Point{T: now.Add(-time.Hour * 16), P: 210054},
 		}
 
 		wave2 := &Wave{
-			Base: Point{T: now, P: 210054},
-			End:  Point{T: now.Add(-time.Hour * 16), P: 189032},
+			Base: &Point{T: now, P: 210054},
+			End:  &Point{T: now.Add(-time.Hour * 16), P: 189032},
 		}
 
 		Convey("Up or down", func() {

@@ -26,12 +26,8 @@ type Point struct {
 }
 
 type Wave struct {
-	Id      uint16
-	Parent  uint16
-	Impulse bool
-	Degree  uint8
-	Base    Point
-	End     Point
+	Base *Point
+	End  *Point
 }
 
 func (w Wave) Time() time.Duration {

@@ -16,39 +16,54 @@ func TestImpulse(t *testing.T) {
 		return now.Add(-time.Hour * time.Duration(s))
 	}
 
-	w1 := &Impulse{Wave: &Wave{Base: Point{T: shift(5), P: 0}, End: Point{T: shift(4), P: 2}}}
-	w2 := &Correction{Wave: &Wave{Base: Point{T: shift(4), P: 2}, End: Point{T: shift(3), P: 1}}}
-	w3 := &Impulse{Wave: &Wave{Base: Point{T: shift(3), P: 1}, End: Point{T: shift(2), P: 5}}}
-	w4 := &Correction{Wave: &Wave{Base: Point{T: shift(2), P: 5}, End: Point{T: shift(1), P: 4}}}
-	w5 := &Impulse{Wave: &Wave{Base: Point{T: shift(1), P: 5}, End: Point{T: shift(0), P: 7}}}
+	points := [...]*Point{
+		&Point{T: shift(5), P: 10},
+		&Point{T: shift(4), P: 12},
+		&Point{T: shift(3), P: 11},
+		&Point{T: shift(2), P: 15},
+		&Point{T: shift(1), P: 14},
+		&Point{T: shift(0), P: 17},
+	}
 
-	i1 := Impulse{W1: w1, W2: w2, W3: w3, W4: w4, W5: w5}
+	i1 := NewImpulse(points, 1)
 
-	Convey("Rules and Check", t, func() {
-		Convey("Rule1", func() {
-			So(i1.Rule1(), ShouldBeTrue)
+	Convey("Impulse", t, func() {
+		Convey("Rules and Check", func() {
+
+			Convey("Rule1", func() {
+				So(i1.Rule1(), ShouldBeTrue)
+			})
+
+			Convey("Rule2", func() {
+				So(i1.Rule2(), ShouldBeTrue)
+			})
+
+			Convey("Rule3", func() {
+				So(i1.Rule3(), ShouldBeTrue)
+			})
+
+			Convey("Check", func() {
+				So(i1.Check(), ShouldBeTrue)
+			})
 		})
 
-		Convey("Rule2", func() {
-			So(i1.Rule2(), ShouldBeTrue)
-		})
+		Convey("Fib and Len", func() {
+			wave1 := &Wave{
+				Base: &Point{T: shift(5), P: 1800},
+				End:  &Point{T: shift(3), P: 2000}}
 
-		Convey("Rule3", func() {
-			So(i1.Rule3(), ShouldBeTrue)
-		})
+			wave2 := &Wave{
+				Base: &Point{T: shift(5), P: 2100},
+				End:  &Point{T: shift(3), P: 1800}}
 
-		Convey("Check", func() {
-			So(i1.Check(), ShouldBeTrue)
+			Convey("Fib", func() {
+				So(wave1.Fib(0.5), ShouldEqual, 1900)
+				So(wave2.Fib(0.33), ShouldEqual, 1899)
+			})
+
+			Convey("Len", func() {
+				So(wave1.Len(), ShouldEqual, 200)
+			})
 		})
 	})
-
-	//
-	//Convey("Fib", t, func() {
-	//	So(wave.Fib(0.5), ShouldEqual, 199543)
-	//	So(wave2.Fib(0.3), ShouldEqual, 195338)
-	//})
-	//
-	//Convey("Len", t, func() {
-	//	So(wave.Len(), ShouldEqual, 21022)
-	//})
 }
