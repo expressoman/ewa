@@ -30,6 +30,8 @@ type Wave struct {
 	End  *Point
 }
 
+// Wave interface
+
 func (w Wave) Time() time.Duration {
 	return w.End.T.Sub(w.Base.T)
 }
@@ -52,4 +54,20 @@ func (w Wave) Fib(level float64) uint32 {
 	}
 
 	return w.End.P + uint32(float64(w.Len())*level)
+}
+
+func (w Wave) Begins() time.Time {
+	return w.Base.T
+}
+
+func (w Wave) Ends() time.Time {
+	return w.End.T
+}
+
+func (w Wave) Starts() uint32 {
+	return w.Base.P
+}
+
+func (w Wave) Tops() uint32 {
+	return w.End.P
 }
