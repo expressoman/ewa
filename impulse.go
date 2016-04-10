@@ -3,8 +3,10 @@ package ewa
 import "time"
 
 type Impulse struct {
-	base, w1, w2, w3, w4, w5 *Point
-	Degree                   uint8
+	*Wave
+	Degree     uint8
+	W1, W3, W5 *Impulse
+	W2, W4     *Correction
 }
 
 func ShortImpulse(base *Point, w5 *Point, degree uint8) *Impulse {
