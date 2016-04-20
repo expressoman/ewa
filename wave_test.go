@@ -1,9 +1,10 @@
 package ewa
 
 import (
-	. "github.com/smartystreets/goconvey/convey"
 	"testing"
 	"time"
+
+	. "github.com/smartystreets/goconvey/convey"
 )
 
 func TestWave(t *testing.T) {
@@ -11,13 +12,13 @@ func TestWave(t *testing.T) {
 	Convey("Wave", t, func() {
 		now := time.Now()
 		wave := &Wave{
-			Base: &Point{T: now, P: 189032},
-			End:  &Point{T: now.Add(-time.Hour * 16), P: 210054},
+			Base: &Point{T: now, P: 1890.32},
+			End:  &Point{T: now.Add(-time.Hour * 16), P: 2100.54},
 		}
 
 		wave2 := &Wave{
 			Base: &Point{T: now, P: 210054},
-			End:  &Point{T: now.Add(-time.Hour * 16), P: 189032},
+			End:  &Point{T: now.Add(-time.Hour * 16), P: 1890.32},
 		}
 
 		Convey("Interface", func() {
@@ -26,12 +27,12 @@ func TestWave(t *testing.T) {
 			})
 
 			Convey("Fib", func() {
-				So(wave.Fib(0.5), ShouldEqual, 199543)
-				So(wave2.Fib(0.3), ShouldEqual, 195338)
+				So(wave.Fib(0.5), ShouldEqual, 1995.43)
+				So(wave2.Fib(0.3), ShouldEqual, 1953.38)
 			})
 
 			Convey("Len", func() {
-				So(wave.Len(), ShouldEqual, 21022)
+				So(wave.Len(), ShouldEqual, 210.22)
 			})
 
 			Convey("Time", func() {

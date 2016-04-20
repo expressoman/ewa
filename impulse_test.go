@@ -1,13 +1,9 @@
-package ewa
+package test_impulse
 
 import (
-	"fmt"
-	. "github.com/smartystreets/goconvey/convey"
 	"testing"
 	"time"
 )
-
-var _ = fmt.Print
 
 func TestImpulse(t *testing.T) {
 	now := time.Now()

@@ -1,22 +1,10 @@
 package ewa
 
-type Correction struct {
-	*Wave
-	Degree   uint8
-	ZigZag   *ZigZag
-	Flat     *Flat
-	Triangle *Triangle
-	Combo    *Combo
-	Triple   *Triple
-}
-
-// Wave interface here
-
-func ShortCorrection(base *Point, end *Point, degree uint8) *Correction {
+func ShortCorrection(base *Point, end *Point, degree uint8) *correction {
 	return &Correction{Wave: &Wave{Base: base, End: end}, Degree: degree}
 }
 
-func FullCorrection(corrType interface{}, degree uint8) *Correction {
+func FullCorrection(corrType interface{}, degree uint8) *correction {
 	if zigzag, ok := corrType.(ZigZag); ok {
 		return &Correction{ZigZag: &zigzag, Degree: degree}
 	}

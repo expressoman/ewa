@@ -1,14 +1,6 @@
-package ewa
+package test_zigzag
 
-import (
-	"fmt"
-	//. "github.com/smartystreets/goconvey/convey"
-	"testing"
-	"time"
-)
-
-var _ = fmt.Print
-var _ = time.April
+import "testing"
 
 func TestZigZag(t *testing.T) {
 	//now := time.Now()
