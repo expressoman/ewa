@@ -16,44 +16,44 @@ type wave struct {
 
 //impulse
 type impulse struct {
-	*wave
+	Waver
 	degree     DegreeType
-	w1, w3, w5 *impulse
+	w1, w3, w5 Impulser
 	w2, w4     Correctioner
 }
 
 //correction
 type correction struct {
-	*wave
+	Waver
 	degree DegreeType
 }
 
 //zigzag
 type zigzag struct {
-	*wave
+	Waver
 	degree DegreeType
-	a, c   *impulse
+	a, c   Impulser
 	b      Correctioner
 }
 
 //flat
 type flat struct {
-	*wave
+	Waver
 	degree DegreeType
 	a, b   Correctioner
-	c      *impulse
+	c      Impulser
 }
 
 //triangle
 type triangle struct {
-	*wave
+	Waver
 	degree        DegreeType
 	a, b, c, d, e Correctioner
 }
 
 //combo
 type combo struct {
-	*wave
+	Waver
 	degree  DegreeType
 	w, x, y Correctioner
 }
