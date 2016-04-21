@@ -44,6 +44,8 @@ type WaveMarkuperLive interface {
 	//Sub - array of pointers of the sub waves
 	Sub() waves
 
+	// WaverMarkuper interface + next methods
+
 	//Finished - Formula: Ends() - time of last tick <= 0
 	Finished() bool
 }

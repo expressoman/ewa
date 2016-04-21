@@ -32,6 +32,8 @@ type WaveMarkuper interface {
 	//Slope - slope of the wave = Len() / Duration()
 	Slope() float64
 
+	// Waver interface + next methods
+
 	//Next - ref to obj representing next wave following after this
 	Next() *wave
 

@@ -10,9 +10,9 @@ type Impulser interface {
 
 	//Waves of the impulse formation
 	W1() *impulse
-	W2() *correction
+	W2() Correctioner
 	W3() *impulse
-	W4() *correction
+	W4() Correctioner
 	W5() *impulse
 
 	//Impulse rules

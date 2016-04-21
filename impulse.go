@@ -39,7 +39,7 @@ func (i impulse) W1() *impulse {
 	return i.w1
 }
 
-func (i impulse) W2() *correction {
+func (i impulse) W2() Correctioner {
 	return i.w2
 }
 
@@ -47,8 +47,8 @@ func (i impulse) W3() *impulse {
 	return i.w3
 }
 
-func (i impulse) W4() *correction {
-	return i.w4
+func (i impulse) W4() Correctioner {
+	return i.W4()
 }
 
 func (i impulse) W5() *impulse {
@@ -63,10 +63,10 @@ func (i impulse) Rule1() bool {
 
 func (i impulse) Rule2() bool {
 	if i.w1.Up() {
-		return i.w1.end.p < i.w4.end.p
+		return i.w1.end.p < i.W4().Tops()
 	}
 
-	return i.w1.end.p > i.w4.end.p
+	return i.w1.end.p > i.W4().Tops()
 }
 
 func (i impulse) Rule3() bool {

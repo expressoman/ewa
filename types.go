@@ -52,6 +52,7 @@ const (
 	Triangle                = "triangle"
 	Combo                   = "combo"
 	Triple                  = "triple"
+	Unknown                 = "unknown"
 )
 
 //LabelType types
