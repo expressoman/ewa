@@ -36,25 +36,25 @@ type Waver interface {
 	Slope() float64
 
 	//Next - ref to obj representing next wave following after this
-	Next() *Wave
+	Next() *wave
 
 	//Prev - ref to obj representing prev wave following after this
-	Prev() *Wave
+	Prev() *wave
 
 	//Parent - ref to parent wave obj
-	Parent() *Wave
+	Parent() *wave
 
 	//Sub - array of pointers of the sub waves
-	Sub() []*Wave
+	Sub() waves
 }
 
 //Correctioner interface
 type Correctioner interface {
 	Complex() bool
-	Type() WaveType
+	Type() CorrectionType
 }
 
 //Markup structure
-type Markup interface {
-	Wave(WaveType) []*Wave
+type Markuper interface {
+	Wave(WaveType) waves
 }
