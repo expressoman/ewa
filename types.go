@@ -5,8 +5,8 @@ type DegreeType uint
 
 // Degrees of the wave
 const (
-	_              = iota
-	Primary Degree = iota
+	_                  = iota
+	Primary DegreeType = iota
 	Intermediate
 	Minor
 	Minute
