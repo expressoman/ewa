@@ -2,12 +2,18 @@ package ewa
 
 //Impulser interface
 type Impulser interface {
-	//W1 - ref to waves making impulse formation
-	W1() *wave
-	W2() *wave
-	W3() *wave
-	W4() *wave
-	W5() *wave
+	//Degree of the wave
+	Degree() DegreeType
+
+	//Shows if wave has subdivisions or only start and end
+	HasSub() bool
+
+	//Waves of the impulse formation
+	W1() *impulse
+	W2() *correction
+	W3() *impulse
+	W4() *correction
+	W5() *impulse
 
 	//Impulse rules
 	Rule1() bool
