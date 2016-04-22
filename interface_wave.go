@@ -4,6 +4,7 @@ import "time"
 
 //Waver - interface for base wave
 type Waver interface {
+
 	//Duration of the wave
 	Duration() time.Duration
 

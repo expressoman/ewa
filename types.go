@@ -20,8 +20,8 @@ const (
 	Pico
 )
 
-//waves
-type waves []*wave
+//Wavers - collection of Waver
+type Wavers []*Waver
 
 //WaveType type
 type WaveType string

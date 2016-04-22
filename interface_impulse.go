@@ -32,7 +32,7 @@ type Impulser interface {
 	//Slope - slope of the wave = Len() / Duration()
 	Slope() float64
 
-	// Waver interface
+	// ============ Waver interface ends ============
 
 	//Degree of the wave
 	Degree() DegreeType

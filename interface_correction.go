@@ -32,6 +32,8 @@ type Correctioner interface {
 	//Slope - slope of the wave = Len() / Duration()
 	Slope() float64
 
+	// ============ Waver interface ends ============
+
 	//Degree of the wave
 	Degree() DegreeType
 

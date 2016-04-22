@@ -60,7 +60,7 @@ type combo struct {
 
 //triple
 type triple struct {
-	*wave
+	Waver
 	degree         DegreeType
 	w, x, y, x1, z Correctioner
 }

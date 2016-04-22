@@ -32,17 +32,17 @@ type WaveMarkuper interface {
 	//Slope - slope of the wave = Len() / Duration()
 	Slope() float64
 
-	// Waver interface + next methods
+	// ============ Waver interface ends ============
 
 	//Next - ref to obj representing next wave following after this
-	Next() *wave
+	Next() Waver
 
 	//Prev - ref to obj representing prev wave following after this
-	Prev() *wave
+	Prev() Waver
 
 	//Parent - ref to parent wave obj
-	Parent() *wave
+	Parent() Waver
 
 	//Sub - array of pointers of the sub waves
-	Sub() waves
+	Sub() Wavers
 }
