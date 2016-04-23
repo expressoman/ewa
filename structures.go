@@ -62,5 +62,10 @@ type combo struct {
 type triple struct {
 	Waver
 	degree         DegreeType
-	w, x, y, x1, z Correctioner
+	w, x, y, x2, z Correctioner
+}
+
+//Markup structure
+type Markup struct {
+	Waves []WaveMarkuper
 }
