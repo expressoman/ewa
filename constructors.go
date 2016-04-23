@@ -1,13 +1,7 @@
 package ewa
 
 func newImpulseShort(start, end *point, degree DegreeType) Impulser {
-	return &impulse{
-		Waver: &wave{
-			base: start,
-			end:  end,
-		},
-		degree: degree,
-	}
+	return &impulse{Waver: &wave{base: start, end: end}, degree: degree}
 }
 
 func newCorrectionShort(base *point, end *point, degree DegreeType) Correctioner {
@@ -25,4 +19,15 @@ func newImpulse(points [6]*point, degree DegreeType) Impulser {
 		w4:     newCorrectionShort(points[3], points[4], subDegree),
 		w5:     newImpulseShort(points[4], points[5], subDegree),
 	}
+}
+
+func newMarkupFromMW(path string) (*Markup, error) {
+	mw := &mwQuery{}
+	err := mw.importMotiveWaveXML(path)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return mw.markup()
 }
