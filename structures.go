@@ -2,70 +2,75 @@ package ewa
 
 import "time"
 
-//point on chart
-type point struct {
-	p float64
-	t time.Time
+//Point struc
+type Point struct {
+	T time.Time
+	P float64
 }
 
-//wave
-type wave struct {
-	base *point
-	end  *point
+//Move struc
+type Move struct {
+	Base *Point
+	End  *Point
 }
 
-//impulse
-type impulse struct {
-	Waver
-	degree     DegreeType
-	w1, w3, w5 Impulser
-	w2, w4     Correctioner
+//Wave struc
+type Wave struct {
+	*Move
+	Degree DegreeType
+
+	Prev   *Wave
+	Next   *Wave
+	Parent *Wave
 }
 
-//correction
-type correction struct {
-	Waver
-	degree DegreeType
+//Impulse struc
+type Impulse struct {
+	*Wave
+
+	W1 *Impulse
+	W2 *Correction
+	W3 *Impulse
+	W4 *Correction
+	W5 *Impulse
 }
 
-//zigzag
-type zigzag struct {
-	Waver
-	degree DegreeType
-	a, c   Impulser
-	b      Correctioner
+//Correction struc
+type Correction struct {
+	*Wave
+
+	Zigzag   *Zigzag
+	Flat     *Flat
+	Triangle *Triangle
+	Combo    *Combo
+	Triple   *Triple
 }
 
-//flat
-type flat struct {
-	Waver
-	degree DegreeType
-	a, b   Correctioner
-	c      Impulser
+// Corrective structures
+
+//Zigzag struct
+type Zigzag struct {
+	A, C *Impulse
+	B    *Correction
 }
 
-//triangle
-type triangle struct {
-	Waver
-	degree        DegreeType
-	a, b, c, d, e Correctioner
+//Flat struct
+type Flat struct {
+	A, B *Correction
+	C    *Impulse
 }
 
-//combo
-type combo struct {
-	Waver
-	degree  DegreeType
-	w, x, y Correctioner
+//Triangle struct
+type Triangle struct {
+	A, B, C, D, E *Correction
 }
 
-//triple
-type triple struct {
-	Waver
-	degree         DegreeType
-	w, x, y, x2, z Correctioner
+//Combo struct
+type Combo struct {
+	W, X, Y *Correction
 }
 
-//Markup structure
-type Markup struct {
-	Waves []WaveMarkuper
+//Triple struct
+type Triple struct {
+	W, X, Y, X2, Z *Correction
 }
