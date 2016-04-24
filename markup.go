@@ -21,8 +21,8 @@ func (m *Markup) addImpulse(impulse *Impulse) *Impulse {
 	})
 
 	for _, one := range m.Impulses {
-		if one.Move.Base == impulse.Move.Base &&
-			one.Move.End == impulse.Move.End {
+		if one.Move.Base.P == impulse.Move.Base.P &&
+			one.Move.End.P == impulse.Move.End.P {
 
 			context.Debug("Impulse found")
 			return one
@@ -42,11 +42,10 @@ func (m *Markup) addCorrection(correction *Correction) *Correction {
 	})
 
 	for _, one := range m.Corrections {
-		if one.Move.Base == correction.Move.Base &&
-			one.Move.End == correction.Move.End {
+		if one.Move.Base.P == correction.Move.Base.P &&
+			one.Move.End.P == correction.Move.End.P {
 
 			context.Debug("Correction found")
-
 			return one
 		}
 	}
