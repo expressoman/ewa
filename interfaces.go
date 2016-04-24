@@ -2,8 +2,8 @@ package ewa
 
 import "time"
 
-//WaveMarkuperLive - interface for wave
-type WaveMarkuperLive interface {
+//Mover - interface for move
+type Mover interface {
 
 	//Duration of the wave
 	Duration() time.Duration
@@ -31,23 +31,21 @@ type WaveMarkuperLive interface {
 
 	//Slope - slope of the wave = Len() / Duration()
 	Slope() float64
+}
 
-	// ============ Waver interface ends ============
+//Waver - interface for wave object inside markup
+type Waver interface {
+	Mover
 
 	//Next - ref to obj representing next wave following after this
-	Next() Waver
+	NextWave() Waver
 
 	//Prev - ref to obj representing prev wave following after this
-	Prev() Waver
+	PrevWave() Waver
 
 	//Parent - ref to parent wave obj
-	Parent() Waver
+	ParentWave() Waver
 
-	//Sub - array of pointers of the sub waves
-	Sub() Wavers
-
-	// ============ WaverMarkuper interface ends ============
-
-	//Finished - Formula: Ends() - time of last tick <= 0
-	Finished() bool
+	//Has subwaves
+	Sub() bool
 }

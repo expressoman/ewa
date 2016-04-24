@@ -2,7 +2,6 @@ package ewa
 
 import (
 	"os"
-	"time"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -27,19 +26,13 @@ var _ = Describe("Motivewave", func() {
 		Expect(err).Should(Succeed())
 	})
 
-	FIt("findImpulser", func() {
+	FIt("Parse", func() {
 		mw := &mwQuery{}
 
 		err := mw.importMotiveWaveXML(path)
 		Expect(err).Should(Succeed())
 
-		impulserX := &impulse{Waver: &wave{
-			base: &point{p: 2106.8, t: time.Now()},
-			end:  &point{p: 1806.3, t: time.Now()},
-		},
-			degree: Primary,
-		}
-
-		mw.findImpulser(2106.8, 1806.3, impulserX)
+		_, err = mw.parse()
+		Expect(err).Should(Succeed())
 	})
 })
