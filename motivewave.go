@@ -49,5 +49,7 @@ func (mw *mwQuery) parse() (*Markup, error) {
 	markup.processTriangles(mw)
 	markup.processTripleCombo(mw)
 
+	markup.printStack()
+
 	return markup, nil
 }

@@ -1,6 +1,10 @@
 package ewa
 
-import "github.com/apex/log"
+import (
+	"fmt"
+
+	"github.com/apex/log"
+)
 
 //Markup struct
 type Markup struct {
@@ -86,15 +90,14 @@ func (m *Markup) processImpulseWave(w mwImpulse) {
 	setParentWave(wave, subW1, subW2, subW3, subW4, subW5)
 
 	// Adding primitives
-	_ = m.addImpulse(&Impulse{Wave: wave})
+	impulse := m.addImpulse(&Impulse{Wave: wave})
 
-	_ = m.addImpulse(&Impulse{Wave: subW1})
-	_ = m.addImpulse(&Impulse{Wave: subW3})
-	_ = m.addImpulse(&Impulse{Wave: subW5})
+	impulse.W1 = m.addImpulse(&Impulse{Wave: subW1})
+	impulse.W3 = m.addImpulse(&Impulse{Wave: subW3})
+	impulse.W5 = m.addImpulse(&Impulse{Wave: subW5})
 
-	_ = m.addCorrection(&Correction{Wave: subW2})
-	_ = m.addCorrection(&Correction{Wave: subW4})
-
+	impulse.W2 = m.addCorrection(&Correction{Wave: subW2})
+	impulse.W4 = m.addCorrection(&Correction{Wave: subW4})
 }
 
 func (m *Markup) processImpulses(mwQuery *mwQuery) {
@@ -292,4 +295,27 @@ func (m *Markup) processTripleCombo(mwQuery *mwQuery) {
 			m.processComboWave(w)
 		}
 	}
+}
+
+func (m *Markup) printStack() {
+
+	for _, one := range m.Impulses {
+		log.WithFields(log.Fields{
+			"D":  one.Duration(),
+			"P":  fmt.Sprintf("%.2f->%.2f", one.Base.P, one.End.P),
+			"W1": one.W1,
+			"W2": one.W2,
+			"W3": one.W3,
+			"W4": one.W4,
+			"W5": one.W5,
+		}).Debug("Imp")
+	}
+
+	for _, one := range m.Corrections {
+		log.WithFields(log.Fields{
+			"D": one.Duration(),
+			"P": fmt.Sprintf("%.2f->%.2f", one.Base.P, one.End.P),
+		}).Debug("Corr")
+	}
+
 }
