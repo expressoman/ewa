@@ -138,15 +138,27 @@ func (m *Markup) processCorrections(mwQuery *mwQuery) {
 
 		setParentWave(wave, subWA, subWB, subWC)
 
-		// Generating correction wave
-		correction := &Wave{Move: &Move{ori, pWC}, Degree: degree}
+		corr := &Correction{Wave: wave}
+		m.Corrections = append(m.Corrections, corr)
 
-		_ = m.addCorrection(&Correction{Wave: correction})
+		wB := m.addCorrection(&Correction{Wave: subWB})
+		wC := m.addImpulse(&Impulse{Wave: subWC})
 
-		_ = m.addCorrection(&Correction{Wave: subWB})
-		_ = m.addImpulse(&Impulse{Wave: subWC})
+		if subWA.Len()*.9 <= subWB.Len() {
+			// Flat
 
-		//TODO ZigZag or Flat
+			wA := m.addCorrection(&Correction{Wave: subWA})
+			flat := &Flat{A: wA, B: wB, C: wC}
+			corr.Flat = flat
+			m.Flats = append(m.Flats, flat)
+		} else {
+			// Zigzag
+
+			wA := m.addImpulse(&Impulse{Wave: subWA})
+			zigzag := &Zigzag{A: wA, B: wB, C: wC}
+			corr.Zigzag = zigzag
+			m.Zigzags = append(m.Zigzags, zigzag)
+		}
 	}
 }
 
