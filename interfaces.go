@@ -45,4 +45,7 @@ type Waver interface {
 
 	//Parent - ref to parent wave obj
 	ParentWave() Waver
+
+	//Has subwaves
+	Sub() bool
 }

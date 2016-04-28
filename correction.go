@@ -1,7 +1,7 @@
 package ewa
 
-//HasSub - does it have subwaves
-func (c *Correction) HasSub() bool {
+//Sub - does it has subwaves
+func (c *Correction) Sub() bool {
 	return c.Zigzag != nil || c.Flat != nil ||
 		c.Triangle != nil || c.Combo != nil || c.Triple != nil
 }
