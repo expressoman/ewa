@@ -20,6 +20,19 @@ const (
 	Pico
 )
 
+//CorrectionType type
+type CorrectionType string
+
+// Correction types
+const (
+	CTUnknown  CorrectionType = "unknown"
+	CTZigzag                  = "zigzag"
+	CTFlat                    = "flat"
+	CTTriangle                = "triangle"
+	CTCombo                   = "combo"
+	CTTriple                  = "triple"
+)
+
 //Degree - gets degree type from string
 func Degree(degree string) DegreeType {
 	switch degree {

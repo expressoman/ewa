@@ -327,7 +327,7 @@ func (m *Markup) printStack() {
 		log.WithFields(log.Fields{
 			"D": one.Duration(),
 			"P": fmt.Sprintf("%.2f->%.2f", one.Base.P, one.End.P),
+			"T": one.Type(),
 		}).Debug("Corr")
 	}
-
 }
