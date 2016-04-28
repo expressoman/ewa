@@ -138,8 +138,7 @@ func (m *Markup) processCorrections(mwQuery *mwQuery) {
 
 		setParentWave(wave, subWA, subWB, subWC)
 
-		corr := &Correction{Wave: wave}
-		m.Corrections = append(m.Corrections, corr)
+		corr := m.addCorrection(&Correction{Wave: wave})
 
 		wB := m.addCorrection(&Correction{Wave: subWB})
 		wC := m.addImpulse(&Impulse{Wave: subWC})
