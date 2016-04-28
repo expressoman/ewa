@@ -20,58 +20,47 @@ const (
 	Pico
 )
 
-//Wavers - collection of Waver
-type Wavers []*Waver
-
-//WaveType type
-type WaveType string
-
-//Wave types
-const (
-	Impulse    WaveType = "impulse"
-	Correction          = "correction"
-)
-
-//ImpulseType type
-type ImpulseType string
-
-//ImpulseType
-const (
-	Simple   ImpulseType = "simple"
-	Extended             = "extended"
-	Diagonal             = "diagonal"
-)
-
 //CorrectionType type
 type CorrectionType string
 
-//Correction types
+// Correction types
 const (
-	ZigZag   CorrectionType = "zigzag"
-	Flat                    = "flat"
-	Triangle                = "triangle"
-	Combo                   = "combo"
-	Triple                  = "triple"
-	Unknown                 = "unknown"
+	CTUnknown  CorrectionType = "unknown"
+	CTZigzag                  = "zigzag"
+	CTFlat                    = "flat"
+	CTTriangle                = "triangle"
+	CTCombo                   = "combo"
+	CTTriple                  = "triple"
 )
 
-//LabelType types
-type LabelType string
+//Degree - gets degree type from string
+func Degree(degree string) DegreeType {
+	switch degree {
+	case "Primary":
+		return Primary
+	case "Intermediate":
+		return Intermediate
+	case "Minor":
+		return Minor
+	case "Minute":
+		return Minute
+	case "Minuette":
+		return Minuette
+	case "Subminuette":
+		return Subminuette
+	case "Micro":
+		return Micro
+	case "Submicro":
+		return Submicro
+	case "Miniscule":
+		return Miniscule
+	case "Nano":
+		return Nano
+	case "Subnano":
+		return Subnano
+	case "Pico":
+		return Pico
+	}
 
-//Label types
-const (
-	W1 LabelType = "1"
-	W2           = "2"
-	W3           = "3"
-	W4           = "4"
-	W5           = "5"
-	A            = "a"
-	B            = "b"
-	C            = "c"
-	D            = "d"
-	E            = "e"
-	W            = "w"
-	X            = "x"
-	Y            = "y"
-	Z            = "z"
-)
+	return Minuette
+}

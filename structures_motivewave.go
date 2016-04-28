@@ -7,7 +7,6 @@ type mwQuery struct {
 	Corrections     []mwCorrection  `xml:"graph>correction"`
 	Triangles       []mwTriangle    `xml:"graph>triangle"`
 	TripleCombo     []mwComboTriple `xml:"graph>triple_combo"`
-	Waves           []WaveMarkuper
 }
 
 type mwPoint struct {
